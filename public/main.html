@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/datepicker.min.js"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+</head>
+
+<body>
+    <div class="pt-[82px] p-4">
+        <div id="sticky-banner" tabindex="-1" class="fixed top-0 start-0 z-50 flex justify-between w-full p-4 border-b border-gray-200 bg-gray-50">
+            <div class="flex items-center mx-auto">
+                <p class="flex items-center text-sm font-normal text-gray-500 ">
+                    <span class="inline-flex p-1 me-3 bg-gray-200 rounded-full w-6 h-6 items-center justify-center shrink-0">
+                        <svg class="w-3 h-3 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 19">
+                            <path d="M15 1.943v12.114a1 1 0 0 1-1.581.814L8 11V5l5.419-3.871A1 1 0 0 1 15 1.943ZM7 4H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2v5a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2V4ZM4 17v-5h1v5H4ZM16 5.183v5.634a2.984 2.984 0 0 0 0-5.634Z"/>
+                        </svg>
+                    <span class="sr-only">Light bulb</span>
+                    </span>
+                    <span>Магазин электротехники "Дом электрики"</span>
+                    <p>
+
+                    </p>
+                </p>
+            </div>
+            <div class="flex items-right mx-auto">
+            <!-- Кнопка перехода в корзину -->
+                <a href="cart.html" class="bg-red-700 text-white px-3 py-2 items-right rounded hover:bg-rose-300 hover:text-red-950 mb-6 inline-block">Перейти в корзину</a>
+            </div>
+            <!--
+            <div class="flex items-center">
+                <button data-dismiss-target="#sticky-banner" type="button" class="shrink-0 inline-flex justify-center w-7 h-7 items-center text-gray-400 hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 dark:hover:bg-gray-600 dark:hover:text-white">
+                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                    </svg>
+                <span class="sr-only">Close banner</span>
+                </button>
+            </div>
+            -->
+        </div> 
+    </div>
+
+<nav class="flex" aria-label="Breadcrumb">
+  <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
+    <li class="inline-flex items-center">
+      <a href="#" class="inline-flex items-center text-sm font-medium text-red-700">
+        <svg class="w-3 h-3 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+          <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"/>
+        </svg>
+        Главная
+      </a>
+    </li>
+  </ol>
+</nav>
+
+<hr class="w-48 h-1 mx-auto my-4 bg-gray-100 border-0 rounded-sm md:my-10">    
+<p class="mb-3 text-gray-500">Что такое электротехника? Электротехника — область техники, связанная с получением, распределением, преобразованием и использованием электрической энергии.</p>
+<p class="text-gray-500">Бываюют разные классы электротехнического оборудования. В магазине "Дом электрики" продаются товары следующих классов: </p>
+<p class="text-gray-500">Класс электро-установочной электротехники. Из названия подвида можно сделать вывод, что сюда входят устройства, требующие монтажа.</p>
+<p class="text-gray-500">Класс бытовой электротехники. В эту категорию можно выделить все те устройства, которые ежедневно используются людьми, значительно облегчая и делая комфортабельной жизнь в целом </p>
+<hr class="w-48 h-1 mx-auto my-4 bg-gray-100 border-0 rounded-sm md:my-10">
+
+<!-- Кнопки переключения -->
+<div class="flex justify-center gap-4 mt-6">
+  <button onclick="toggleSection('EIQSection')" class="bg-red-700 text-white px-4 py-2 rounded hover:bg-rose-300 hover:text-red-950"> Электро-установочная техника</button>
+  <button onclick="toggleSection('BTSection')" class="bg-red-700 text-white px-4 py-2 rounded hover:bg-rose-300 hover:text-red-950"> Бытовая техника </button>
+</div>
+
+<!-- Раздел "Электро-установочная техника" -->
+<div id="EIQSection" class="hidden mt-6 text-center">
+  <button onclick="toggleSection('SocketsSection')" class="bg-red-700 text-white px-4 py-2 m-2 rounded hover:bg-rose-300 hover:text-red-950"> Розетки </button>
+  <button onclick="toggleSection('SwitcheSection')" class="bg-red-700 text-white px-4 py-2 m-2 rounded hover:bg-rose-300 hover:text-red-950"> Выключатели </button>
+</div>
+
+ <!-- Раздел "Бытовая техника" -->
+<div id="BTSection" class="hidden mt-6 text-center">
+  <button onclick="toggleSection('RefrigeratorsSection')" class="bg-red-700 text-white px-4 py-2 m-2 rounded hover:bg-rose-300 hover:text-red-950"> Холодильники </button>
+  <button onclick="toggleSection('DishwashersSection')" class="bg-red-700 text-white px-4 py-2 m-2 rounded hover:bg-rose-300 hover:text-red-950"> Посудомоечные машины </button>
+</div>
+
+<!-- Секции для вывода данных -->
+<div id="SocketsSection" class="hidden mt-6">
+  <h2 class="text-xl font-bold mb-4 text-center">Розетки</h2>
+  <div id="SocketsTableContainer" class="flex flex-wrap gap-4 justify-center"></div>
+</div>
+
+<div id="SwitcheSection" class="hidden mt-6">
+  <h2 class="text-xl font-bold mb-4 text-center">Выключатели</h2>
+  <div id="SwitchesTableContainer" class="flex flex-wrap gap-4 justify-center"></div>
+</div>
+
+<div id="RefrigeratorsSection" class="hidden mt-6">
+  <h2 class="text-xl font-bold mb-4 text-center">Холодильники</h2>
+  <div id="RefrigeratorsTableContainer" class="flex flex-wrap gap-4 justify-center"></div>
+</div>
+
+<div id="DishwashersSection" class="hidden mt-6">
+  <h2 class="text-xl font-bold mb-4 text-center">Посудомоечные машины</h2>
+  <div id="DishwashersTableContainer" class="flex flex-wrap gap-4 justify-center"></div>
+</div>
+<hr class="w-48 h-1 mx-auto my-4 bg-gray-100 border-0 rounded-sm md:my-10">  
+  <!-- Подключение логики -->
+  <script type="module" src="./main.js"></script>
+  <script>
+    function toggleSection(sectionId) 
+    {
+        const eiq = document.getElementById('EIQSection');
+        const sockets = document.getElementById('SocketsSection');
+        const switche = document.getElementById('SwitcheSection');
+        const bt = document.getElementById('BTSection');
+        const refrigerators = document.getElementById('RefrigeratorsSection');
+        const dishwashers = document.getElementById('DishwashersSection');
+
+        eiq.classList.add('hidden');
+        sockets.classList.add('hidden');
+        switche.classList.add('hidden');
+        bt.classList.add('hidden');
+        refrigerators.classList.add('hidden');
+        dishwashers.classList.add('hidden');
+
+        const selected = document.getElementById(sectionId);
+        if (selected) selected.classList.remove('hidden');
+    }
+  </script>
+
+  <!-- Подвал -->
+   <div class="p-4 border-t bg-gray-50 flex justify-between w-full p-4 border-t border-gray-200 bg-gray-50">
+    <a href="main.html#" class="text-100 text-red-700">Главная</a>
+    <a href="contacts.html" class="text-100 text-gray-500 hover:text-red-700">Контакты</a>
+    <a href="cart.html" class="text-100 text-gray-500 hover:text-red-700">Корзина</a>
+    <a href="authorization.html" class="text-100 text-gray-500 hover:text-red-700">Аутентификация</a>
+    <a href="profile.html" class="text-100 text-gray-500 hover:text-red-700">Профиль</a>
+    <a href="#" class="text-100 text-red-700">2025 год</a>
+   </div>
+
+</body>
