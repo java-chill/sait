@@ -26,28 +26,78 @@ const dishwashersRef = ref(database, 'Dishwashers');
 // Корзина
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
+// SEO обновление мета-тегов при переключении радела 
+function updateMetaTags(sectionId) {
+    let newTitle = 'Магазин электро-техники «Дом электрики» — купить электротехнику и бытовую технику';
+    let newDescription = 'Официальный интернет магазин электрики «Дом электрики». Купить электротехнику, розетки, выключатели, холодильники и посудомоечные машины с доставкой по Новосибирску.';
+
+    switch(sectionId) {
+        case 'SocketsSection':
+            newTitle = 'Купить розетку — влагозащищенные, с крышкой, компьютерные | Дом электрики';
+            newDescription = 'Купите розетку влагозащищенную с крышкой, компьютерную розетку и другие модели в магазине «Дом электрики». Доставка по Новосибирску.';
+            break;
+        case 'SwitcheSection':
+            newTitle = 'Купить выключатель — 1, 2, 3 клавиши | Магазин «Дом электрики»';
+            newDescription = 'Выключатель с 1, 2 или 3 клавишами — большой выбор в интернет-магазине электротехники «Дом электрики». Низкие цены, гарантия.';
+            break;
+        case 'RefrigeratorsSection':
+            newTitle = 'Купить холодильник с морозильником | Бытовая техника «Дом электрики»';
+            newDescription = 'Холодильник с морозильником — купить в Новосибирске по выгодной цене в магазине «Дом электрики». Официальная гарантия, доставка.';
+            break;
+        case 'DishwashersSection':
+            newTitle = 'Посудомоечная машина купить | Интернет-магазин «Дом электрики»';
+            newDescription = 'Посудомоечная машина купить в Новосибирске — большой выбор моделей в магазине «Дом электрики». Рассрочка, доставка, установка.';
+            break;
+        case 'EIQSection':
+            newTitle = 'Электро-установочная техника — розетки и выключатели | Дом электрики';
+            newDescription = 'Магазин электрики «Дом электрики» предлагает электро-установочную технику: розетки, выключатели, рамки, механизмы. Надежно и недорого.';
+            break;
+        case 'BTSection':
+            newTitle = 'Бытовая техника — холодильники, посудомойки | Дом электрики';
+            newDescription = 'Купить бытовую технику в Новосибирске: холодильники, посудомоечные машины и другое. Интернет-магазин «Дом электрики».';
+            break;
+        default:
+            // Главная
+            newTitle = 'Магазин электро-техники «Дом электрики» — купить электротехнику и бытовую технику';
+            newDescription = 'Официальный интернет магазин электрики «Дом электрики». Купить электротехнику, розетки, выключатели, холодильники и посудомоечные машины с доставкой по Новосибирску.';
+    }
+
+    document.title = newTitle;
+    let metaDesc = document.querySelector('meta[name="description"]');
+    if (!metaDesc) {
+        metaDesc = document.createElement('meta');
+        metaDesc.name = 'description';
+        document.head.appendChild(metaDesc);
+    }
+    metaDesc.setAttribute('content', newDescription);
+}
+
 // Функция переключения секций
 window.toggleSection = async function(sectionId) {
   const allSections = ['EIQSection','BTSection','SocketsSection','SwitcheSection','RefrigeratorsSection','DishwashersSection'];
   allSections.forEach(s => document.getElementById(s)?.classList.add('hidden'));
-
   const selected = document.getElementById(sectionId);
   if(selected) selected.classList.remove('hidden');
 
-  // Загрузка товары только для конечных категорий
+  // === ЧПУ: обновляем URL без перезагрузки ===
+  const urlMap = {
+    'EIQSection': '/category/elektro-ustanovochnaya',
+    'BTSection': '/category/bytovaya-tehnika',
+    'SocketsSection': '/category/rozetki',
+    'SwitcheSection': '/category/vyklyuchateli',
+    'RefrigeratorsSection': '/category/holodilniki',
+    'DishwashersSection': '/category/posudomoechnye-mashiny'
+  };
+  const newUrl = urlMap[sectionId] || '/';
+  window.history.pushState({ section: sectionId }, '', newUrl);
+
+  updateMetaTags(sectionId); // ваша SEO-функция
+
   switch(sectionId) {
-    case 'SocketsSection': 
-        await loadProducts(socketsRef, 'SocketsTableContainer', 'sockets'); 
-        break;
-    case 'SwitcheSection': 
-        await loadProducts(switchesRef, 'SwitchesTableContainer', 'switches'); 
-        break;
-    case 'RefrigeratorsSection': 
-        await loadProducts(refrigeratorsRef, 'RefrigeratorsTableContainer', 'refrigerators'); 
-        break;
-    case 'DishwashersSection': 
-        await loadProducts(dishwashersRef, 'DishwashersTableContainer', 'dishwashers'); 
-        break;
+    case 'SocketsSection': await loadProducts(socketsRef, 'SocketsTableContainer', 'sockets'); break;
+    case 'SwitcheSection': await loadProducts(switchesRef, 'SwitchesTableContainer', 'switches'); break;
+    case 'RefrigeratorsSection': await loadProducts(refrigeratorsRef, 'RefrigeratorsTableContainer', 'refrigerators'); break;
+    case 'DishwashersSection': await loadProducts(dishwashersRef, 'DishwashersTableContainer', 'dishwashers'); break;
   }
 };
 
@@ -75,6 +125,18 @@ async function loadProducts(refCategory, containerId, type) {
             const price = product[priceField] || "0";
             const stock = parseInt(product.InStock) || 0;
             const image = product.Image || "https://via.placeholder.com/150";
+            
+            // SEO alt-текст
+            let altText = name;
+            if (type === 'sockets') {
+                altText = `Розетка ${name} купить в Новосибирске`;
+            } else if (type === 'switches') {
+                altText = `Выключатель ${name} — магазин Дом электрики`;
+            } else if (type === 'refrigerators') {
+                altText = `Холодильник ${name} с морозильником`;
+            } else if (type === 'dishwashers') {
+                altText = `Посудомоечная машина ${name} купить`;
+            }
 
             // Глобально уникальный ID для корзины
             const uniqueId = `${type}-${child.key}`;
@@ -83,7 +145,7 @@ async function loadProducts(refCategory, containerId, type) {
             card.className = "bg-white border border-gray-200 rounded-lg shadow p-4 m-2 flex flex-col items-center text-center max-w-xs";
 
             card.innerHTML = `
-                <img src="${image}" alt="${name}" class="w-40 h-40 object-contain mb-2 rounded"/>
+                <img src="${image}" alt="${altText}" class="w-40 h-40 object-contain mb-2 rounded"/>
                 <h3 class="text-lg font-semibold mb-2">${name}</h3>
                 <p class="mb-2 text-red-700 font-bold">${price}</p>
                 <p class="text-sm text-gray-500 mb-1">В наличии: ${stock}</p>
@@ -157,6 +219,28 @@ function renderCart() {
         cartContainer.appendChild(card);
     });
 }
+
+window.addEventListener('popstate', function(event) {
+  const path = window.location.pathname;
+  const reverseMap = {
+    '/category/rozetki': 'SocketsSection',
+    '/category/vyklyuchateli': 'SwitcheSection',
+    '/category/holodilniki': 'RefrigeratorsSection',
+    '/category/posudomoechnye-mashiny': 'DishwashersSection',
+    '/category/elektro-ustanovochnaya': 'EIQSection',
+    '/category/bytovaya-tehnika': 'BTSection',
+    '/': 'main'
+  };
+  const sectionId = reverseMap[path] || 'main';
+  if (sectionId !== 'main') {
+    // Восстанавливаем состояние без повторной загрузки товаров (если нужно — можно добавить флаг)
+    toggleSection(sectionId);
+  } else {
+    // Скрыть все секции, показать только кнопки выбора
+    ['EIQSection','BTSection','SocketsSection','SwitcheSection','RefrigeratorsSection','DishwashersSection']
+      .forEach(id => document.getElementById(id)?.classList.add('hidden'));
+  }
+});
 
 // Рендер корзину при загрузке страницы
 renderCart();
