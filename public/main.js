@@ -79,7 +79,7 @@ window.toggleSection = async function(sectionId) {
   const selected = document.getElementById(sectionId);
   if(selected) selected.classList.remove('hidden');
 
-  // === ЧПУ: обновляем URL без перезагрузки ===
+  // === ЧПУ: обновление URL без перезагрузки ===
   const urlMap = {
     'EIQSection': '/category/elektro-ustanovochnaya',
     'BTSection': '/category/bytovaya-tehnika',
@@ -91,7 +91,7 @@ window.toggleSection = async function(sectionId) {
   const newUrl = urlMap[sectionId] || '/';
   window.history.pushState({ section: sectionId }, '', newUrl);
 
-  updateMetaTags(sectionId); // ваша SEO-функция
+  updateMetaTags(sectionId); //SEO-функция
 
   switch(sectionId) {
     case 'SocketsSection': await loadProducts(socketsRef, 'SocketsTableContainer', 'sockets'); break;
@@ -233,10 +233,10 @@ window.addEventListener('popstate', function(event) {
   };
   const sectionId = reverseMap[path] || 'main';
   if (sectionId !== 'main') {
-    // Восстанавливаем состояние без повторной загрузки товаров (если нужно — можно добавить флаг)
+    // Восстанавление состояния без повторной загрузки товаров 
     toggleSection(sectionId);
   } else {
-    // Скрыть все секции, показать только кнопки выбора
+    
     ['EIQSection','BTSection','SocketsSection','SwitcheSection','RefrigeratorsSection','DishwashersSection']
       .forEach(id => document.getElementById(id)?.classList.add('hidden'));
   }
