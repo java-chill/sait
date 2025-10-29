@@ -4,34 +4,30 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
-  <title>Профиль  — Магазин электро-техники «Дом электрики»</title>
+  <title>Профиль — Магазин электро-техники «Дом электрики»</title>
   <meta name="description" content="Личный кабинет в магазине «Дом электрики». Просмотрите историю заказов, управление аккаунтом и персональные данные.">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet"/>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
   <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
 </head>
 <body class="bg-gray-50 min-h-screen flex flex-col">
-
-  <!-- Липучка -->
-  <div class="fixed top-0 start-0 z-50 flex justify-between w-full p-4 border-b border-gray-200 bg-white">
+  <header class="fixed top-0 start-0 z-50 w-full p-4 border-b border-gray-200 bg-white">
     <h1 class="text-2xl font-bold">Профиль</h1>
-    <button id="logoutBtn" class="text-red-700 hover:underline">Выйти</button>
-  </div>
+    <button id="logoutBtn" class="text-red-700 hover:underline min-h-[44px]">Выйти</button>
+  </header>
 
-  <!-- Основной контент -->
-  <div class="flex-grow pt-[72px] p-4 max-w-2xl mx-auto">
+  <main class="flex-grow pt-[100px] p-4 max-w-2xl mx-auto">
     <h2 class="text-xl font-semibold mb-4">История заказов</h2>
     <div id="ordersContainer" class="flex flex-col gap-4">
       <p class="text-gray-500">Загрузка...</p>
     </div>
-  </div>
+  </main>
 
-  <!-- Подвал -->
   <footer class="p-4 border-t bg-gray-50 flex justify-between w-full border-t border-gray-200 mt-auto">
-    <a href="main.html" class="text-100 text-gray-500 hover:text-red-700" >Главная</a>
-    <a href="cart.html" class="text-100 text-gray-500 hover:text-red-700">Корзина</a>
-    <a href="profile.html" class="text-100 text-red-700">Профиль</a>
-    <span class="text-100 text-red-700">2025 год</span>
+    <a href="main.html" class="text-sm text-gray-500 hover:text-red-700">Главная</a>
+    <a href="cart.html" class="text-sm text-gray-500 hover:text-red-700">Корзина</a>
+    <a href="profile.html" class="text-sm text-red-700">Профиль</a>
+    <span class="text-sm text-gray-500">2025 год</span>
   </footer>
 
   <script type="module" src="./profile.js"></script>
