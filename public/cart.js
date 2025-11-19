@@ -75,7 +75,7 @@ function renderCart() {
             let val = parseInt(e.target.value);
             if (isNaN(val) || val < 1) val = 1;
             if (val > item.stock) {
-                alert(`На складе только ${item.stock} шт.`);
+                showMessage(`На складе только ${item.stock} шт.`);
                 val = item.stock;
             }
             item.quantity = val;
@@ -113,12 +113,12 @@ document.getElementById('clearCart').addEventListener('click', () => {
 checkoutButton.addEventListener('click', async () => {
     const currentUserEmail = localStorage.getItem("currentUserEmail");
     if (cart.length === 0) {
-        alert("Корзина пуста!");
+        showMessage("Корзина пуста!");
         return;
     }
 
      if (!currentUserEmail) {
-        alert("Вы должны войти в аккаунт, чтобы оформить заказ.");
+        showMessage("Вы должны войти в аккаунт, чтобы оформить заказ.");
         return;
     }
 
@@ -136,11 +136,11 @@ checkoutButton.addEventListener('click', async () => {
         localStorage.removeItem("cart");
         renderCart();
 
-        alert("Заказ успешно оформлен!");
+        showMessage("Заказ успешно оформлен!");
 
     } catch (error) {
         console.error(error);
-        alert("Ошибка при оформлении заказа");
+        showMessage("Ошибка при оформлении заказа");
     }
 
 });

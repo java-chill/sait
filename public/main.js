@@ -88,7 +88,7 @@ window.toggleSection = async function(sectionId) {
     'RefrigeratorsSection': '/category/holodilniki',
     'DishwashersSection': '/category/posudomoechnye-mashiny'
   };
-  const newUrl = urlMap[sectionId] || '/';
+  const newUrl = urlMap[sectionId] || '/'; 
   window.history.pushState({ section: sectionId }, '', newUrl);
 
   updateMetaTags(sectionId); //SEO-функция
@@ -159,7 +159,7 @@ async function loadProducts(refCategory, containerId, type) {
                 let qty = parseInt(qtyInput.value) || 1;
 
                 if(qty > stock) {
-                    alert(`Нельзя заказать больше, чем есть на складе (${stock})`);
+                    showMessage(`Нельзя заказать больше, чем есть на складе (${stock})`);
                     qty = stock;
                     qtyInput.value = stock;
                 }
@@ -188,7 +188,7 @@ function addToCart(item) {
     }
 
     localStorage.setItem("cart", JSON.stringify(cart));
-    alert(`${item.name} добавлен(а) в корзину`);
+    showMessage(`${item.name} добавлен(а) в корзину`);
 }
 
 // Функция рендера корзины с картинками

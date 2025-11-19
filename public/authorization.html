@@ -64,5 +64,40 @@
   </footer>
 
   <script type="module" src="authorization.js"></script>
+
+  <!-- Контейнер для уведомлений -->
+<div id="notifications" class="fixed top-4 left-0 right-0 z-[100] p-4"></div>
+
+<style>
+  .custom-alert {
+    @apply bg-white border border-gray-200 rounded-lg shadow p-4 mb-3 relative max-w-md mx-auto;
+  }
+  .custom-alert-close {
+    @apply absolute top-2 right-2 bg-gray-200 hover:bg-gray-300 rounded-full w-6 h-6 flex items-center justify-center text-gray-700 font-bold text-sm;
+  }
+</style>
+
+<script>
+  function showMessage(text) {
+    const notifications = document.getElementById('notifications');
+    const alertDiv = document.createElement('div');
+    alertDiv.className = 'custom-alert';
+    alertDiv.innerHTML = `
+      <span>${text}</span>
+      <button class="custom-alert-close">×</button>
+    `;
+    notifications.appendChild(alertDiv);
+
+    // Закрытие по кнопке
+    alertDiv.querySelector('.custom-alert-close').addEventListener('click', () => {
+      alertDiv.remove();
+    });
+
+    // Автоматическое скрытие через 5 секунд
+    setTimeout(() => {
+      if (alertDiv.parentNode) alertDiv.remove();
+    }, 5000);
+  }
+</script>
 </body>
 </html>

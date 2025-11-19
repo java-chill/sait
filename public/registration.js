@@ -27,14 +27,14 @@ document.getElementById('registerButton').addEventListener('click', async () => 
   const password = document.getElementById('reg_password').value.trim();
 
   if (!surname || !name || !patronymic || !birth || !email || !password) {
-    alert('Заполните все поля!');
+    showMessage('Заполните все поля!');
     return;
   }
 
   const birthDate = new Date(birth);
   const age = new Date().getFullYear() - birthDate.getFullYear();
   if (age < 18) {
-    alert('Регистрация доступна только с 18 лет');
+    showMessage('Регистрация доступна только с 18 лет');
     return;
   }
 
@@ -43,7 +43,7 @@ document.getElementById('registerButton').addEventListener('click', async () => 
     const snapshot = await get(child(dbRef, `users/${email.replace(/\./g,'_')}`));
     
     if (snapshot.exists()) {
-      alert('Пользователь с таким e-mail уже зарегистрирован');
+      showMessage('Пользователь с таким e-mail уже зарегистрирован');
       return;
     }
 
@@ -51,11 +51,11 @@ document.getElementById('registerButton').addEventListener('click', async () => 
       surname, name, patronymic, birth, email, password
     });
 
-    alert('Регистрация прошла успешно!');
+    showMessage('Регистрация прошла успешно!');
     document.getElementById('registerForm').reset();
 
   } catch (error) {
     console.error("Ошибка регистрации:", error);
-    alert("Произошла ошибка при регистрации");
+    showMessage("Произошла ошибка при регистрации");
   }
 });

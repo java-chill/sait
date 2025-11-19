@@ -67,7 +67,7 @@ async function loadOrdersHistory() {
 logoutBtn.addEventListener("click", () => {
     if (confirm("Выйти из профиля?")) {
         localStorage.removeItem("currentUserEmail"); // удаление данных авторизации
-        alert("Вы вышли из профиля.");
+        showMessage("Вы вышли из профиля.");
         window.location.href = "authorization.html";
     }
 });

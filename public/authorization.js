@@ -22,7 +22,7 @@ document.getElementById('loginButton').addEventListener('click', async () => {
   const password = document.getElementById('login_password').value.trim();
 
   if (!email || !password) {
-    alert('Введите e-mail и пароль');
+    showMessage('Введите e-mail и пароль');
     return;
   }
 
@@ -31,17 +31,17 @@ document.getElementById('loginButton').addEventListener('click', async () => {
     const snapshot = await get(child(dbRef, `users/${email.replace(/\./g,'_')}`));
     
     if (!snapshot.exists()) {
-      alert('Пользователь не найден');
+      showMessage('Пользователь не найден');
       return;
     }
 
     const data = snapshot.val();
     if (data.password !== password) {
-      alert('Неверный пароль');
+      showMessage('Неверный пароль');
       return;
     }
 
-    alert(`Добро пожаловать, ${data.name}!`);
+    showMessage(`Добро пожаловать, ${data.name}!`);
     document.getElementById('loginForm').reset();
     
     // сохранение email пользователя для других страниц
@@ -56,6 +56,6 @@ document.getElementById('loginButton').addEventListener('click', async () => {
 
   } catch (error) {
     console.error(error);
-    alert("Ошибка авторизации, попробуйте ещё раз");
+    showMessage("Ошибка авторизации, попробуйте ещё раз");
   }
 });
