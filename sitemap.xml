@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-     <loc>http://127.0.0.1:5500/public/main.html#</loc>
+     <loc>http://127.0.0.1:5500/electrical_equipment_store3/main.html#</loc>
      <lastmod>2025-09-25</lastmod>
      <priority>1.0</priority>
   </url>
   <url>
-     <loc>http://127.0.0.1:5500/public/contacts.html</loc>
+     <loc>http://127.0.0.1:5500/electrical_equipment_store3/contacts.html</loc>
      <lastmod>2025-09-25</lastmod>
      <priority>0.9</priority>
   </url>
   <url>
-     <loc>http://127.0.0.1:5500/public/cart.html</loc>
+     <loc>http://127.0.0.1:5500/electrical_equipment_store3/cart.html</loc>
      <lastmod>2025-09-25</lastmod>
      <priority>0.8</priority>
   </url>
   <url>
-     <loc>http://127.0.0.1:5500/public/authorization.html</loc>
+     <loc>http://127.0.0.1:5500/electrical_equipment_store3/authorization.html</loc>
      <lastmod>2025-09-25</lastmod>
      <priority>0.8</priority>
   </url>
   <url>
-     <loc>http://127.0.0.1:5500/public/registration.html</loc>
+     <loc>http://127.0.0.1:5500/electrical_equipment_store3/registration.html</loc>
      <lastmod>2025-09-25</lastmod>
      <priority>0.8</priority>
   </url>
   <url>
-     <loc>http://127.0.0.1:5500/public/profile.html</loc>
+     <loc>http://127.0.0.1:5500/electrical_equipment_store3/profile.html</loc>
      <lastmod>2025-09-25</lastmod>
      <priority>0.7</priority>
   </url>
